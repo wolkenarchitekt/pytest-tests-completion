@@ -1,0 +1,10 @@
+# pytest completion
+_pytest () {  
+  local cur
+  _get_comp_words_by_ref -n : cur
+  if [ -f ".pytest.completion" ]; then
+    COMPREPLY=( $( compgen -W '$(cat ".pytest.completion" | tr "\n" " ")' -- "$cur" ) )
+    __ltrim_colon_completions "$cur"
+  fi
+}
+complete -F _pytest pytest
